@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TECHFEST '26 Contact</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050816;
+    overflow-x:hidden;
+    font-family:'Poppins',sans-serif;
+    color:white;
+    position:relative;
+}
+
+/* ================================= */
+/* GRID BACKGROUND */
+/* ================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:45px 45px;
+
+    z-index:-4;
+}
+
+/* ================================= */
+/* GLOW EFFECTS */
+/* ================================= */
+
+.glow{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(130px);
+    z-index:-3;
+}
+
+.glow1{
+    width:380px;
+    height:380px;
+    background:#00d9ff;
+    top:-120px;
+    left:-120px;
+    opacity:.15;
+    animation:float1 8s ease-in-out infinite alternate;
+}
+
+.glow2{
+    width:420px;
+    height:420px;
+    background:#8f2dff;
+    bottom:-150px;
+    right:-150px;
+    opacity:.15;
+    animation:float2 10s ease-in-out infinite alternate;
+}
+
+@keyframes float1{
+    100%{
+        transform:translateY(40px) translateX(30px);
+    }
+}
+
+@keyframes float2{
+    100%{
+        transform:translateY(-30px) translateX(-40px);
+    }
+}
+
+/* ================================= */
+/* MAIN HEADING */
+/* ================================= */
+
+.main-heading{
+    width:100%;
+    text-align:center;
+    padding-top:70px;
+    position:relative;
+    animation:fadeDown 1s ease;
+}
+
+.main-heading h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:6rem;
+    font-weight:800;
+    letter-spacing:8px;
+    line-height:1;
+    display:inline-block;
+    position:relative;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffffff,
+    #00d9ff,
+    #8f2dff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 35px rgba(0,217,255,0.18);
+}
+
+.main-heading h1::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:380px;
+    height:120px;
+
+    background:#00d9ff;
+
+    filter:blur(100px);
+
+    opacity:.14;
+
+    z-index:-1;
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-60px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ================================= */
+/* HOME BUTTON */
+/* ================================= */
+
+.home-btn{
+    position:absolute;
+
+    top:75px;
+    left:80px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 24px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    color:white;
+
+    font-size:.9rem;
+    font-weight:600;
+    letter-spacing:2px;
+
+    backdrop-filter:blur(10px);
+
+    overflow:hidden;
+
+    transition:.45s ease;
+}
+
+.home-btn::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+    );
+
+    transform:translateX(-100%);
+
+    transition:1s;
+}
+
+.home-btn:hover::before{
+    transform:translateX(100%);
+}
+
+.home-btn:hover{
+    transform:translateY(-4px);
+
+    border-color:rgba(0,217,255,0.35);
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.12);
+}
+
+.home-btn svg{
+    width:18px;
+    height:18px;
+
+    stroke:#00d9ff;
+    stroke-width:2;
+
+    fill:none;
+
+    transition:.4s ease;
+}
+
+.home-btn:hover svg{
+    transform:translateX(-3px);
+    stroke:white;
+}
+
+/* ================================= */
+/* CONTACT SECTION */
+/* ================================= */
+
+.contact-section{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 6% 80px;
+}
+
+/* ================================= */
+/* CONTAINER */
+/* ================================= */
+
+.contact-container{
+    width:100%;
+    max-width:1280px;
+
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+
+    background:rgba(10,15,28,0.82);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:34px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 60px rgba(0,0,0,0.45),
+    inset 0 0 25px rgba(255,255,255,0.02);
+
+    animation:fadeUp 1s ease;
+}
+
+/* ================================= */
+/* LEFT SIDE */
+/* ================================= */
+
+.contact-left{
+    padding:75px 60px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(0,217,255,0.06),
+    rgba(143,45,255,0.05)
+    );
+}
+
+.contact-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px 22px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    margin-bottom:35px;
+
+    font-size:.82rem;
+    letter-spacing:2px;
+}
+
+.contact-tag::before{
+    content:"";
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#00d9ff;
+    box-shadow:0 0 15px #00d9ff;
+}
+
+.contact-left h1{
+    font-size:4rem;
+    line-height:1.05;
+    margin-bottom:25px;
+
+    font-family:'Orbitron',sans-serif;
+}
+
+.contact-left h1 span{
+    background:linear-gradient(90deg,#00d9ff,#8f2dff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.contact-left p{
+    color:#cfcfcf;
+    line-height:1.9;
+    margin-bottom:55px;
+}
+
+/* ================================= */
+/* INFO BOX */
+/* ================================= */
+
+.info-box{
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    padding:20px;
+
+    margin-bottom:24px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:.45s ease;
+}
+
+.info-box:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(0,217,255,0.25);
+
+    box-shadow:
+    0 0 30px rgba(0,217,255,0.08);
+}
+
+/* ================================= */
+/* ICON */
+/* ================================= */
+
+.icon{
+    min-width:62px;
+    width:62px;
+    height:62px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:#0d1326;
+
+    border:1px solid rgba(0,217,255,0.25);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.45s ease;
+}
+
+.icon svg{
+    width:28px;
+    height:28px;
+
+    stroke:#00d9ff;
+    stroke-width:1.8;
+
+    fill:none;
+
+    transition:.4s ease;
+}
+
+.info-box:hover .icon{
+    transform:translateY(-4px);
+    border-color:#00d9ff;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.18);
+}
+
+.info-box:hover .icon svg{
+    stroke:white;
+}
+
+/* ================================= */
+/* TEXT */
+/* ================================= */
+
+.info-text h3{
+    font-size:.9rem;
+    letter-spacing:1.5px;
+    margin-bottom:6px;
+    color:#00d9ff;
+}
+
+.info-text span{
+    font-size:1rem;
+}
+
+/* ================================= */
+/* RIGHT SIDE */
+/* ================================= */
+
+.contact-right{
+    padding:75px 60px;
+}
+
+/* ================================= */
+/* FORM TITLE */
+/* ================================= */
+
+.form-title{
+    margin-bottom:40px;
+}
+
+.form-title h2{
+    font-size:2.5rem;
+    margin-bottom:12px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.form-title p{
+    color:#bdbdbd;
+}
+
+/* ================================= */
+/* FORM */
+/* ================================= */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:20px 22px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    background:rgba(255,255,255,0.04);
+
+    color:white;
+
+    font-size:.96rem;
+
+    outline:none;
+
+    transition:.4s ease;
+}
+
+textarea{
+    resize:none;
+    height:160px;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#00d9ff;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.12);
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#8e8e8e;
+}
+
+/* ================================= */
+/* BUTTON */
+/* ================================= */
+
+.submit-btn{
+    position:relative;
+
+    padding:20px;
+
+    border:none;
+    outline:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    color:white;
+
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:.45s ease;
+}
+
+.submit-btn:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 35px rgba(0,217,255,0.28),
+    0 0 55px rgba(143,45,255,0.2);
+}
+
+/* ================================= */
+/* SUCCESS */
+/* ================================= */
+
+.success-screen{
+    display:none;
+    text-align:center;
+    animation:fadeIn .8s ease;
+}
+
+.success-icon{
+    width:120px;
+    height:120px;
+
+    margin:auto;
+    margin-bottom:30px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #00ffb3,
+    #00d9ff
+    );
+
+    font-size:3rem;
+
+    box-shadow:
+    0 0 45px rgba(0,255,179,0.3);
+}
+
+.success-screen h2{
+    font-size:3rem;
+    margin-bottom:18px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.success-screen p{
+    color:#cfcfcf;
+    line-height:1.9;
+}
+
+/* ================================= */
+/* FOOTER */
+/* ================================= */
+
+.footer{
+
+    padding:60px 20px 30px;
+
+    background:rgba(10,15,25,0.9);
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+}
+
+.footer-content{
+
+    max-width:1200px;
+    margin:auto;
+
+    text-align:center;
+}
+
+.footer h2{
+
+    font-size:2.5rem;
+    margin-bottom:15px;
+
+    letter-spacing:4px;
+
+    font-family:'Orbitron',sans-serif;
+
+    background:linear-gradient(
+    90deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.footer p{
+
+    color:#cfcfcf;
+
+    margin-bottom:30px;
+
+    letter-spacing:1px;
+}
+
+.footer-links{
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+.footer-links a{
+
+    color:white;
+    text-decoration:none;
+
+    transition:.3s ease;
+
+    position:relative;
+}
+
+.footer-links a::after{
+
+    content:"";
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:0%;
+    height:2px;
+
+    background:#00d9ff;
+
+    transition:.3s;
+}
+
+.footer-links a:hover::after{
+    width:100%;
+}
+
+.footer-links a:hover{
+    color:#00d9ff;
+}
+
+.footer-bottom{
+
+    color:#888;
+    font-size:.9rem;
+
+    margin-top:20px;
+}
+
+/* ================================= */
+/* ANIMATIONS */
+/* ================================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(60px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+/* ================================= */
+/* RESPONSIVE */
+/* ================================= */
+
+@media(max-width:1050px){
+
+    .contact-container{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .main-heading{
+        padding-top:50px;
+    }
+
+    .main-heading h1{
+        font-size:3.4rem;
+        letter-spacing:4px;
+    }
+
+    .home-btn{
+        position:relative;
+
+        top:auto;
+        left:auto;
+
+        margin:auto;
+        margin-bottom:35px;
+
+        width:max-content;
+    }
+
+    .contact-left,
+    .contact-right{
+        padding:45px 25px;
+    }
+
+    .contact-left h1{
+        font-size:2.7rem;
+    }
+
+    .form-title h2{
+        font-size:2rem;
+    }
+
+    .success-screen h2{
+        font-size:2rem;
+    }
+
+    .footer h2{
+        font-size:1.8rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<!-- MAIN HEADING -->
+
+<div class="main-heading">
+
+    <a href="/index.html" class="home-btn">
+
+        <svg viewBox="0 0 24 24">
+            <path d="M3 10.5L12 3L21 10.5"></path>
+            <path d="M5 9.5V21H19V9.5"></path>
+        </svg>
+
+        HOME
+
+    </a>
+
+    <h1>
+        TECHFEST '26
+    </h1>
+
+</div>
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- LEFT -->
+
+        <div class="contact-left">
+
+            <div class="contact-tag">
+                LET'S CONNECT
+            </div>
+
+            <h1>
+                CONTACT <br>
+                <span>SUPPORT</span>
+            </h1>
+
+            <p>
+                Need help regarding accommodations, registrations,
+                sponsorships or event details? Reach out to our
+                support team and we'll assist you quickly.
+            </p>
+
+            <div class="info-box">
+
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 16.92V20a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 11.29 19a19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2 4.18 2 2 0 0 1 4 2h3.09a2 2 0 0 1 2 1.72c.12.89.32 1.76.59 2.59a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.49-1.14a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.59.59A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </div>
+
+                <div class="info-text">
+                    <h3>PHONE NUMBER</h3>
+                    <span>+91 7355919927</span>
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16v16H4z"/>
+                        <path d="M22 6l-10 7L2 6"/>
+                    </svg>
+                </div>
+
+                <div class="info-text">
+                    <h3>EMAIL ADDRESS</h3>
+                    <span>contact@techfest.iit26.com</span>
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+
+                <div class="info-text">
+                    <h3>LOCATION</h3>
+                    <span>IIT Bombay, Mumbai, India</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="contact-right">
+
+            <div id="formArea">
+
+                <div class="form-title">
+                    <h2>SEND MESSAGE</h2>
+
+                    <p>
+                        Fill out the form below and our team will contact you soon.
+                    </p>
+                </div>
+
+                <form id="contactForm">
+
+                    <input type="text" placeholder="Full Name" required>
+
+                    <input type="email" placeholder="Email Address" required>
+
+                    <input type="tel" placeholder="Phone Number" required>
+
+                    <textarea placeholder="Write your message..." required></textarea>
+
+                    <button type="submit" class="submit-btn">
+                        SEND MESSAGE
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="success-screen" id="successScreen">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>MESSAGE SENT</h2>
+
+                <p>
+                    Thank you for contacting us.<br>
+                    Our team will reach out to you shortly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h2>TECHFEST '26</h2>
+
+        <p>
+            IIT Bombay Annual Science & Technology Festival
+        </p>
+
+        <div class="footer-links">
+
+            <a href="../index.html">Home</a>
+            <a href="#">Events</a>
+            <a href="../Accomodations/accodomations.html">Accommodation</a>
+            <a href="../Contact/contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TECHFEST IIT BOMBAY. All Rights Reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+const form = document.getElementById("contactForm");
+const formArea = document.getElementById("formArea");
+const successScreen = document.getElementById("successScreen");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    formArea.style.display = "none";
+
+    successScreen.style.display = "block";
+
+});
+
+</script>
+
+</body>
+</html>

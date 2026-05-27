@@ -4,132 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Accommodations</title>
+<title>Techfest '26 | Accommodations</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-    /* ========================= */
-/* BUTTON */
-/* ========================= */
-
-.btn-wrap{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:70px;
-    padding:0 20px;
-}
-
-.accommodation-btn{
-    position:relative;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    width:fit-content;
-    min-width:280px;
-    max-width:100%;
-
-    padding:20px 40px;
-
-    text-align:center;
-
-    font-size:1rem;
-    font-weight:700;
-    letter-spacing:2px;
-    text-decoration:none;
-    color:#fff;
-
-    border-radius:18px;
-
-    background:linear-gradient(
-    135deg,
-    #00d9ff,
-    #8f2dff
-    );
-
-    overflow:hidden;
-
-    transition:0.4s ease;
-
-    box-shadow:
-    0 0 25px rgba(0,217,255,0.35),
-    0 0 45px rgba(143,45,255,0.25);
-
-    animation:pulseBtn 2s infinite;
-}
-
-/* SHINE EFFECT */
-
-.accommodation-btn::before{
-    content:"";
-    position:absolute;
-
-    top:0;
-    left:-120%;
-
-    width:100%;
-    height:100%;
-
-    background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.35),
-    transparent
-    );
-
-    transform:skewX(-20deg);
-
-    transition:.8s;
-}
-
-.accommodation-btn:hover::before{
-    left:120%;
-}
-
-/* HOVER */
-
-.accommodation-btn:hover{
-    transform:translateY(-6px) scale(1.04);
-
-    box-shadow:
-    0 0 35px rgba(0,217,255,0.55),
-    0 0 70px rgba(143,45,255,0.45);
-}
-
-/* ANIMATION */
-
-@keyframes pulseBtn{
-
-    50%{
-        transform:scale(1.03);
-    }
-
-}
-
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
-
-@media(max-width:768px){
-
-    .accommodation-btn{
-
-        width:100%;
-        max-width:330px;
-
-        padding:18px 20px;
-
-        font-size:.9rem;
-        letter-spacing:1.5px;
-    }
-
-}
 
 *{
     margin:0;
@@ -152,10 +32,13 @@ body::before{
     content:"";
     position:fixed;
     inset:0;
+
     background:
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
     background-size:45px 45px;
+
     z-index:-3;
 }
 
@@ -198,7 +81,90 @@ body::before{
 
 .section{
     min-height:100vh;
-    padding:120px 7%;
+    padding:60px 7%;
+}
+
+/* ========================= */
+/* TOPBAR */
+/* ========================= */
+
+.topbar{
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:60px;
+
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.techfest-title{
+
+    font-size:4rem;
+    font-weight:800;
+
+    letter-spacing:6px;
+
+    background:linear-gradient(90deg, #ffffff, #00d9ff, #8f2dff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 30px rgba(0,217,255,.3);
+
+    animation:titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow{
+
+    100%{
+        transform:translateY(-6px);
+        filter:drop-shadow(0 0 20px rgba(0,217,255,.7));
+    }
+
+}
+
+.home-btn{
+
+    padding:15px 30px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+    color:white;
+
+    font-weight:700;
+    letter-spacing:2px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(10px);
+
+    transition:.4s ease;
+
+    box-shadow:
+    0 0 20px rgba(0,217,255,0.15);
+}
+
+.home-btn:hover{
+
+    transform:translateY(-4px);
+
+    background:linear-gradient(
+    135deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    box-shadow:
+    0 0 30px rgba(0,217,255,.45);
 }
 
 /* ========================= */
@@ -207,6 +173,7 @@ body::before{
 
 .heading-box{
     position:relative;
+
     width:100%;
     margin-bottom:90px;
 
@@ -214,6 +181,7 @@ body::before{
     border-radius:20px;
 
     background:rgba(12,18,32,0.75);
+
     backdrop-filter:blur(12px);
 
     overflow:hidden;
@@ -251,8 +219,10 @@ body::before{
 .heading-box::after{
     content:"";
     position:absolute;
+
     width:180px;
     height:100%;
+
     top:0;
     left:-220px;
 
@@ -275,10 +245,14 @@ body::before{
 }
 
 .heading{
+
     text-align:center;
+
     font-size:4rem;
     font-weight:800;
+
     letter-spacing:5px;
+
     padding:28px;
 }
 
@@ -297,6 +271,7 @@ body::before{
 /* ========================= */
 
 .card{
+
     position:relative;
 
     background:rgba(12,18,32,0.82);
@@ -328,9 +303,8 @@ body::before{
     animation-delay:.4s;
 }
 
-/* HOVER */
-
 .card:hover{
+
     transform:translateY(-15px) scale(1.03);
 
     box-shadow:
@@ -338,9 +312,8 @@ body::before{
     0 0 80px rgba(143,45,255,0.12);
 }
 
-/* BORDER */
-
 .card::before{
+
     content:"";
     position:absolute;
     inset:0;
@@ -363,9 +336,8 @@ body::before{
     mask-composite:exclude;
 }
 
-/* TOP LIGHT */
-
 .card::after{
+
     content:"";
     position:absolute;
 
@@ -377,8 +349,6 @@ body::before{
 
     background:radial-gradient(circle,#00d9ff40,transparent 70%);
 }
-
-/* CORNERS */
 
 .corner{
     position:absolute;
@@ -401,9 +371,12 @@ body::before{
     border-top:none;
 }
 
+/* ========================= */
 /* ICON */
+/* ========================= */
 
 .icon{
+
     width:75px;
     height:75px;
 
@@ -431,29 +404,244 @@ body::before{
 }
 
 @keyframes floatIcon{
+
     50%{
         transform:translateY(-8px);
     }
+
 }
 
+/* ========================= */
 /* TEXT */
+/* ========================= */
 
 .card h2{
+
     font-size:2rem;
     margin-bottom:20px;
     letter-spacing:2px;
 }
 
 .card p{
+
     line-height:1.9;
     color:#d6d6d6;
 }
 
 .note{
+
     margin-top:25px;
     font-size:.82rem;
+
     color:#6ce7ff;
     opacity:.85;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.btn-wrap{
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-top:70px;
+
+    padding:0 20px;
+}
+
+.accommodation-btn{
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:fit-content;
+    min-width:280px;
+
+    padding:20px 40px;
+
+    text-align:center;
+
+    font-size:1rem;
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-decoration:none;
+    color:#fff;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+    135deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    overflow:hidden;
+
+    transition:0.4s ease;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.35),
+    0 0 45px rgba(143,45,255,0.25);
+
+    animation:pulseBtn 2s infinite;
+}
+
+.accommodation-btn::before{
+
+    content:"";
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+    );
+
+    transform:skewX(-20deg);
+
+    transition:.8s;
+}
+
+.accommodation-btn:hover::before{
+    left:120%;
+}
+
+.accommodation-btn:hover{
+
+    transform:translateY(-6px) scale(1.04);
+
+    box-shadow:
+    0 0 35px rgba(0,217,255,0.55),
+    0 0 70px rgba(143,45,255,0.45);
+}
+
+@keyframes pulseBtn{
+
+    50%{
+        transform:scale(1.03);
+    }
+
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+.footer{
+
+    margin-top:120px;
+
+    padding:60px 20px 30px;
+
+    background:rgba(10,15,25,0.9);
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+}
+
+.footer-content{
+
+    max-width:1200px;
+    margin:auto;
+
+    text-align:center;
+}
+
+.footer h2{
+
+    font-size:2.5rem;
+    margin-bottom:15px;
+
+    letter-spacing:4px;
+
+    background:linear-gradient(
+    90deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.footer p{
+
+    color:#cfcfcf;
+
+    margin-bottom:30px;
+
+    letter-spacing:1px;
+}
+
+.footer-links{
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+.footer-links a{
+
+    color:white;
+    text-decoration:none;
+
+    transition:.3s ease;
+
+    position:relative;
+}
+
+.footer-links a::after{
+
+    content:"";
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:0%;
+    height:2px;
+
+    background:#00d9ff;
+
+    transition:.3s;
+}
+
+.footer-links a:hover::after{
+    width:100%;
+}
+
+.footer-links a:hover{
+    color:#00d9ff;
+}
+
+.footer-bottom{
+
+    color:#888;
+    font-size:.9rem;
+
+    margin-top:20px;
 }
 
 /* ========================= */
@@ -495,12 +683,33 @@ body::before{
 @media(max-width:900px){
 
     .heading{
-        font-size:1.5rem;
+        font-size:1.7rem;
         letter-spacing:2px;
+    }
+
+    .techfest-title{
+        font-size:2.4rem;
     }
 
     .cards{
         grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .topbar{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .techfest-title{
+        font-size:2rem;
+    }
+
+    .footer h2{
+        font-size:1.8rem;
     }
 
 }
@@ -514,6 +723,20 @@ body::before{
 <div class="glow glow2"></div>
 
 <section class="section">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <a href="../index.html" class="home-btn">
+            HOME
+        </a>
+
+        <h1 class="techfest-title">
+            TECHFEST '26
+        </h1>
+
+    </div>
 
     <!-- TITLE -->
 
@@ -529,7 +752,7 @@ body::before{
 
     <div class="cards">
 
-        <!-- CARD -->
+        <!-- CARD 1 -->
 
         <div class="card">
 
@@ -557,7 +780,7 @@ body::before{
 
         </div>
 
-        <!-- CARD -->
+        <!-- CARD 2 -->
 
         <div class="card">
 
@@ -585,7 +808,7 @@ body::before{
 
         </div>
 
-        <!-- CARD -->
+        <!-- CARD 3 -->
 
         <div class="card">
 
@@ -612,19 +835,49 @@ body::before{
             </div>
 
         </div>
-        </div>
 
-        <!-- BUTTON -->
+    </div>
 
-<div class="btn-wrap">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-MlmvuoXlaoCf-Yht3SDe04UWRpmppQoVQXd3YjIHVIoWMQ/viewform?usp=publish-editor" class="accommodation-btn">
-        GET ACCOMMODATIONS
-    </a>
-</div>
+    <!-- BUTTON -->
 
-    
+    <div class="btn-wrap">
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfp6m5KkGzPrm65_e6gVUfXDsyTtIMNhipqaQCmaYlk3kW2UQ/viewform?usp=header" class="accommodation-btn">
+            GET ACCOMMODATIONS
+        </a>
+
+    </div>
 
 </section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h2>TECHFEST '26</h2>
+
+        <p>
+            IIT Bombay Annual Science & Technology Festival
+        </p>
+
+        <div class="footer-links">
+
+            <a href="../index.html">Home</a>
+            <a href="#">Events</a>
+            <a href="../Accomodations/accodomations.html">Accommodation</a>
+            <a href="../Contact/contact.html">Contact</a>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TECHFEST IIT BOMBAY. All Rights Reserved.
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
