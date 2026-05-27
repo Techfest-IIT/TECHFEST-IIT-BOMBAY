@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Accommodations</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    background:#040812;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ========================= */
+/* BACKGROUND */
+/* ========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:45px 45px;
+    z-index:-3;
+}
+
+.glow{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-2;
+    animation:floatGlow 10s ease-in-out infinite alternate;
+}
+
+.glow1{
+    width:350px;
+    height:350px;
+    background:#00d9ff;
+    top:-100px;
+    left:-100px;
+    opacity:.15;
+}
+
+.glow2{
+    width:400px;
+    height:400px;
+    background:#8f2dff;
+    bottom:-100px;
+    right:-100px;
+    opacity:.15;
+    animation-delay:2s;
+}
+
+@keyframes floatGlow{
+    100%{
+        transform:translateY(50px) translateX(30px);
+    }
+}
+
+/* ========================= */
+/* SECTION */
+/* ========================= */
+
+.section{
+    min-height:100vh;
+    padding:120px 7%;
+}
+
+/* ========================= */
+/* TITLE */
+/* ========================= */
+
+.heading-box{
+    position:relative;
+    width:100%;
+    margin-bottom:90px;
+
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+
+    background:rgba(12,18,32,0.75);
+    backdrop-filter:blur(12px);
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.12),
+    inset 0 0 20px rgba(255,255,255,0.03);
+
+    animation:fadeDown 1s ease;
+}
+
+.heading-box::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:1px;
+    border-radius:20px;
+
+    background:linear-gradient(
+    90deg,
+    transparent,
+    #00d9ff,
+    #8f2dff,
+    transparent
+    );
+
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+}
+
+.heading-box::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:100%;
+    top:0;
+    left:-220px;
+
+    background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+    );
+
+    transform:skewX(-20deg);
+
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+    100%{
+        left:130%;
+    }
+}
+
+.heading{
+    text-align:center;
+    font-size:4rem;
+    font-weight:800;
+    letter-spacing:5px;
+    padding:28px;
+}
+
+/* ========================= */
+/* CARDS */
+/* ========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.card{
+    position:relative;
+
+    background:rgba(12,18,32,0.82);
+
+    border-radius:28px;
+
+    padding:45px 35px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 0 25px rgba(255,255,255,0.02);
+
+    transition:.45s ease;
+
+    animation:cardReveal 1.2s ease both;
+}
+
+.card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.card:nth-child(3){
+    animation-delay:.4s;
+}
+
+/* HOVER */
+
+.card:hover{
+    transform:translateY(-15px) scale(1.03);
+
+    box-shadow:
+    0 20px 60px rgba(0,217,255,0.18),
+    0 0 80px rgba(143,45,255,0.12);
+}
+
+/* BORDER */
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    padding:1px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+    135deg,
+    rgba(0,217,255,0.8),
+    rgba(143,45,255,0.8)
+    );
+
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+}
+
+/* TOP LIGHT */
+
+.card::after{
+    content:"";
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    top:-100px;
+    right:-100px;
+
+    background:radial-gradient(circle,#00d9ff40,transparent 70%);
+}
+
+/* CORNERS */
+
+.corner{
+    position:absolute;
+    width:38px;
+    height:38px;
+    border:2px solid #00d9ff;
+}
+
+.corner1{
+    top:15px;
+    left:15px;
+    border-right:none;
+    border-bottom:none;
+}
+
+.corner2{
+    bottom:15px;
+    right:15px;
+    border-left:none;
+    border-top:none;
+}
+
+/* ICON */
+
+.icon{
+    width:75px;
+    height:75px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:25px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.15);
+
+    animation:floatIcon 3s ease-in-out infinite;
+}
+
+.icon svg{
+    width:35px;
+    fill:#00d9ff;
+}
+
+@keyframes floatIcon{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* TEXT */
+
+.card h2{
+    font-size:2rem;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+.card p{
+    line-height:1.9;
+    color:#d6d6d6;
+}
+
+.note{
+    margin-top:25px;
+    font-size:.82rem;
+    color:#6ce7ff;
+    opacity:.85;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-60px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes cardReveal{
+
+    from{
+        opacity:0;
+        transform:translateY(80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:900px){
+
+    .heading{
+        font-size:1.8rem;
+        letter-spacing:2px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<section class="section">
+
+    <!-- TITLE -->
+
+    <div class="heading-box">
+
+        <h1 class="heading">
+            ACCOMMODATION DETAILS
+        </h1>
+
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="cards">
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <div class="corner corner1"></div>
+            <div class="corner corner2"></div>
+
+            <div class="icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"/>
+                </svg>
+
+            </div>
+
+            <h2>CHARGES</h2>
+
+            <p>
+                The accommodation fee is ₹2499 per person
+                for 3 Days & 4 Nights inside IIT Bombay Campus.
+            </p>
+
+            <div class="note">
+                * Limited rooms available. First come first serve basis.
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <div class="corner corner1"></div>
+            <div class="corner corner2"></div>
+
+            <div class="icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z"/>
+                </svg>
+
+            </div>
+
+            <h2>LOCATION</h2>
+
+            <p>
+                Accommodation will be provided inside IIT Bombay Campus
+                or nearby premium partner hotels.
+            </p>
+
+            <div class="note">
+                * Early registrations receive inside-campus priority.
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <div class="corner corner1"></div>
+            <div class="corner corner2"></div>
+
+            <div class="icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4Z"/>
+                </svg>
+
+            </div>
+
+            <h2>DURATION</h2>
+
+            <p>
+                Accommodation starts from June 6th 6:00 PM
+                and remains available until June 10th 10:00 AM.
+            </p>
+
+            <div class="note">
+                * Timing updates will be shared during registration.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

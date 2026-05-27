@@ -1,0 +1,2441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Techfest — IIT Bombay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;400;600;700&family=Roboto:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+      :root {
+        --nav-height: 4.1425rem;
+        --white1: #eee;
+        --white2: #d8d8d8;
+        --primary: #974b60;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      ::-webkit-scrollbar {
+        background: var(--white1);
+        height: 6px;
+        width: 6px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c97a90;
+      }
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--white1);
+        overflow-x: hidden;
+      }
+      ::selection {
+        color: #000;
+        background-color: #c7c6c6cc;
+      }
+      a,
+      button,
+      input,
+      select,
+      textarea {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+      }
+
+      .container {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @media (max-width: 699px) {
+        .container {
+          padding-left: 0.8rem;
+          padding-right: 0.8rem;
+        }
+      }
+
+      /* ---- LINKS ---- */
+      .link {
+        color: #000;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        font-family: "Open Sans", sans-serif;
+      }
+      .link::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        transform: scaleX(1);
+        background: #000;
+        transition: 0.4s;
+        transform-origin: left;
+      }
+      .link:hover::after {
+        transform: scaleX(0);
+      }
+
+      /* ---- BUTTONS ---- */
+      .btn {
+        --bg-color: var(--primary);
+        --border-color: var(--primary);
+        --txt-color: #fff;
+        --hover-bg: #000;
+        --hover-txt-color: #fff;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.625rem;
+        border-radius: 0.5rem;
+        border: solid 1px var(--border-color);
+        font-weight: 700;
+        text-align: left;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        line-height: 0.95;
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--txt-color);
+        transition:
+          color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+          background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .btn-text,
+      .btn-subtitle {
+        z-index: 2;
+        position: relative;
+      }
+      .btn-text {
+        font-weight: 600;
+        font-size: 1.5rem;
+        padding-right: 2rem;
+      }
+      .btn-subtitle {
+        font-weight: 500;
+        font-size: 0.75rem;
+      }
+      .btn > svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        bottom: 0.625rem;
+        right: 0.625rem;
+        z-index: 2;
+        fill: var(--txt-color);
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--hover-bg);
+        transform: translate3d(0, 101%, 0);
+        transform-origin: top left;
+        transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        z-index: 0;
+      }
+      .btn:hover,
+      .btn:focus {
+        --txt-color: var(--hover-txt-color) !important;
+      }
+      .btn:hover::before,
+      .btn:focus::before {
+        transform: translate3d(0, 0, 0);
+      }
+
+      /* ============ NAVIGATION ============ */
+      #nav {
+        --nav-color: #fff;
+        display: flex;
+        align-items: center;
+        height: var(--nav-height);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0 1.2rem;
+        z-index: 99999;
+        color: #fff;
+        mix-blend-mode: difference;
+        pointer-events: none;
+      }
+      #nav a {
+        pointer-events: auto;
+        color: var(--nav-color);
+        text-decoration: none;
+      }
+      .nav-logo {
+        flex-grow: 1;
+      }
+      .nav-logo a {
+        font-family: "Roboto", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: 0.3ch;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+      .nav-link {
+        margin-left: 2rem;
+        font-size: 0.75rem;
+        font-weight: 450;
+        text-decoration: none;
+        position: relative;
+        color: var(--nav-color);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        transform: scaleX(0);
+        background: var(--nav-color);
+        transition: 0.4s;
+        transform-origin: left;
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-link.active::after {
+        top: 50%;
+        transform: scaleX(1);
+      }
+
+      /* mobile hamburger */
+      .mobile-hamburger-btn {
+        display: none;
+        pointer-events: auto;
+        position: absolute;
+        right: 1.2rem;
+        top: calc(var(--nav-height) / 2);
+        transform: translate3d(0, -50%, 0);
+        overflow: hidden;
+        pointer-events: auto;
+        background-color: transparent;
+        color: transparent;
+        border: none;
+        text-transform: uppercase;
+        z-index: 9999992;
+        cursor: pointer;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.85rem;
+        width: 3rem;
+        height: 1.2rem;
+      }
+      .mobile-hamburger-btn::before,
+      .mobile-hamburger-btn::after {
+        position: absolute;
+        color: var(--nav-color);
+        top: 0;
+        right: 0;
+        transition: 0.2s transform;
+        font-size: 0.85rem;
+      }
+      .mobile-hamburger-btn::before {
+        content: "Menu";
+        transform: translate3d(0, 0%, 0);
+      }
+      .mobile-hamburger-btn::after {
+        content: "Close";
+        transform: translate3d(0, 101%, 0);
+      }
+      .mobile-hamburger-btn.active::after {
+        transform: translate3d(0, 0, 0);
+      }
+      .mobile-hamburger-btn.active::before {
+        transform: translate3d(0, -101%, 0);
+      }
+
+      /* mobile nav overlay */
+      #mobile-nav {
+        padding: 1.2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--white2);
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.5s cubic-bezier(0.86, 0, 0.07, 0.995);
+      }
+      #mobile-nav.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+      .mobile-nav-links {
+        list-style-type: none;
+        margin-top: 5rem;
+      }
+      .mobile-nav-link {
+        font-family: "Antonio", sans-serif;
+        font-size: 3.6rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-decoration: none;
+        color: #000;
+        position: relative;
+      }
+      .mobile-nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.5rem;
+        background: #333;
+        transform: scaleX(0);
+        transition: 0.4s;
+        transform-origin: left;
+      }
+      .mobile-nav-link:hover::after {
+        transform: scaleX(1);
+      }
+      .mobile-close-btn {
+        position: absolute;
+        top: calc(var(--nav-height) / 2);
+        right: 1.2rem;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.85rem;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #000;
+      }
+      .nav-footer-copy {
+        color: #333;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+      }
+
+      @media (max-width: 699px) {
+        #nav {
+          padding: 0 0.8rem;
+        }
+        .mobile-hamburger-btn {
+          display: block;
+        }
+        .nav-links.desktop {
+          display: none;
+        }
+      }
+
+      /* ============ HERO ============ */
+      #hero {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background: #111;
+      }
+      .hero-bg {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        min-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+      }
+
+      .hero-video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+      .hero-grain {
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+        opacity: 0.15;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        animation: grainAnim 0.5s steps(1) infinite;
+      }
+      @keyframes grainAnim {
+        0% {
+          background-position: 0 0;
+        }
+        25% {
+          background-position: -5% -10%;
+        }
+        50% {
+          background-position: -10% 5%;
+        }
+        75% {
+          background-position: 5% -5%;
+        }
+        100% {
+          background-position: -5% 10%;
+        }
+      }
+      .hero-content {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 3;
+      }
+      .hero-logo {
+        text-transform: uppercase;
+        font-family: "Antonio", sans-serif;
+        font-weight: 400;
+        font-size: 8rem;
+        color: #333;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        gap: 0;
+      }
+      .hero-logo span {
+        will-change: transform;
+        display: inline-block;
+      }
+      @media (max-width: 699px) {
+        .hero-logo {
+          font-size: 6rem;
+        }
+      }
+      .hero-timeline {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        padding: 4.5rem 1rem;
+        bottom: 0;
+        width: 100%;
+        margin: auto;
+        font-family: "Antonio";
+        font-size: 1.8rem;
+        color: #ddd;
+        text-shadow: 0 1px 0 #3335;
+        font-weight: 600;
+        align-items: center;
+        z-index: 25;
+      }
+      .countdown-timer {
+        display: flex;
+        gap: 2rem;
+        margin-top: 0.5rem;
+      }
+      .countdown-unit {
+        text-align: center;
+        min-width: 3rem;
+      }
+      .countdown-num {
+        font-size: 2.5rem;
+        line-height: 1;
+        display: block;
+      }
+      .countdown-label {
+        font-size: 0.8rem;
+        opacity: 0.7;
+        font-weight: 400;
+      }
+      .scroll-down {
+        will-change: transform;
+        display: block;
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 25;
+      }
+      .scroll-down svg {
+        width: 16px;
+        height: 34px;
+        fill: #fff;
+        animation: 2s ease-in-out scrollDownAnimate infinite;
+      }
+      @keyframes scrollDownAnimate {
+        60% {
+          transform: translateY(-8px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 576px) {
+        .scroll-down {
+          display: none;
+        }
+      }
+
+      /* ============ HOME SECTIONS ============ */
+      .home-section {
+        padding-top: 6rem;
+        padding-bottom: 8rem;
+        --heading-font-size: 16vw;
+        overflow-x: hidden;
+      }
+      .home-section:last-child {
+        padding-top: 14rem;
+      }
+      @media (max-width: 999px) {
+        .home-section {
+          --heading-font-size: 20vw;
+        }
+      }
+      @media (max-width: 760px) {
+        .home-section {
+          --heading-font-size: 24vw;
+        }
+      }
+      .section-header {
+        position: relative;
+        margin-bottom: 3rem;
+      }
+      .section-heading {
+        font-family: "Antonio", sans-serif;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--heading-font-size);
+        font-weight: 200;
+        letter-spacing: -0.15ch;
+        line-height: 0.9;
+        text-transform: uppercase;
+        width: 100%;
+        max-width: fit-content;
+        transform: translateX(-0.15ch);
+      }
+      .section-heading span {
+        text-align: left;
+      }
+      .section-heading ._ar {
+        text-align: right;
+      }
+
+      /* ============ INTRO SECTION ============ */
+      .intro-section {
+        width: 100%;
+        padding-bottom: 5rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        padding-top: calc(var(--nav-height) + 3rem);
+        --heading-font-size: 18vw;
+      }
+      @media (max-width: 999px) {
+        .intro-section {
+          --heading-font-size: 22vw;
+        }
+      }
+      @media (max-width: 760px) {
+        .intro-section {
+          --heading-font-size: 25.6vw;
+        }
+      }
+      @media (max-width: 700px) {
+        .intro-section {
+          padding-left: 0.8rem;
+          padding-right: 0.8rem;
+          min-height: unset;
+          padding-bottom: 2rem;
+        }
+      }
+      .intro-content {
+        margin-bottom: 4rem;
+        width: fit-content;
+        margin: auto;
+        padding: 0;
+      }
+      .intro-subtitle {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        position: absolute;
+        width: 300px;
+        bottom: calc(((0.6 * var(--heading-font-size)) - 96px) / 2);
+        left: calc((1.14 * var(--heading-font-size)) - 150px);
+      }
+      @media (min-width: 999px) {
+        .intro-subtitle {
+          font-size: 1.4rem;
+          width: 500px;
+          left: calc((1.14 * var(--heading-font-size)) - 250px);
+        }
+      }
+      @media (min-width: 800px) {
+        .intro-subtitle {
+          font-size: 1.2rem;
+          width: 400px;
+          left: calc((1.14 * var(--heading-font-size)) - 200px);
+        }
+      }
+      @media (max-width: 700px) {
+        .intro-subtitle {
+          position: static;
+          margin: 4.5rem auto;
+          width: 75%;
+          font-size: 1rem;
+        }
+      }
+      .header-btn-wrapper {
+        height: calc(0.8 * var(--heading-font-size));
+        width: calc(1.15 * var(--heading-font-size));
+        position: absolute;
+        right: calc(0.05 * var(--heading-font-size));
+        bottom: calc(0.9 * var(--heading-font-size));
+      }
+      @media (max-width: 700px) {
+        .header-btn-wrapper {
+          top: calc(0.09 * var(--heading-font-size));
+          left: calc(2.4 * var(--heading-font-size));
+          bottom: unset;
+        }
+      }
+      @media (max-width: 550px) {
+        .header-btn-wrapper .intro-header-btn .intro-btn-subtitle {
+          font-size: 0;
+        }
+        .header-btn-wrapper .intro-header-btn .intro-btn-text {
+          font-size: 1.2rem;
+        }
+        .header-btn-wrapper .intro-header-btn > svg {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+      }
+
+      /* marquee bg */
+      .intro-bg {
+        user-select: none;
+        pointer-events: none;
+        overflow-y: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: calc(1.4 * var(--heading-font-size));
+        white-space: nowrap;
+        font-family: "Antonio", sans-serif;
+        letter-spacing: -0.18ch;
+        text-transform: uppercase;
+      }
+      .rail {
+        position: absolute;
+        height: calc(1.4 * var(--heading-font-size));
+        line-height: 0.8;
+      }
+      .rail:nth-child(1) {
+        color: #dadada;
+        top: calc(-0.045 * var(--heading-font-size));
+        animation: 140s infinite linear marquee;
+      }
+      .rail:nth-child(2) {
+        color: #eaeaea;
+        top: 25%;
+        animation: 120s infinite linear marquee;
+      }
+      .rail:nth-child(3) {
+        color: #efefef;
+        top: 50%;
+        animation: 100s infinite linear marquee;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ============ HIGHLIGHTS ============ */
+      .highlights-section {
+        padding-top: 6rem;
+        padding-bottom: 8rem;
+        --heading-font-size: 16vw;
+      }
+      @media (max-width: 999px) {
+        .highlights-section {
+          --heading-font-size: 20vw;
+        }
+      }
+      @media (max-width: 760px) {
+        .highlights-section {
+          --heading-font-size: 24vw;
+        }
+      }
+      .hl-gallery {
+        display: grid;
+        gap: 0.625rem;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas: "a a b b b c c" "d d e e f f f" "g g h h h i i";
+      }
+      .hl-gallery > :nth-child(1) {
+        grid-area: a;
+      }
+      .hl-gallery > :nth-child(2) {
+        grid-area: b;
+      }
+      .hl-gallery > :nth-child(3) {
+        grid-area: e;
+      }
+      .hl-gallery > :nth-child(4) {
+        grid-area: f;
+      }
+      .hl-gallery > :nth-child(5) {
+        grid-area: g;
+      }
+      .hl-gallery > :nth-child(6) {
+        grid-area: h;
+      }
+      .hl-gallery > :nth-child(7) {
+        grid-area: i;
+      }
+      .hl-btn-wrapper {
+        height: 18vw;
+        min-height: 16rem;
+        grid-area: c;
+      }
+      @media (max-width: 999px) {
+        .hl-gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-areas: "a b" "e f" "g h" "i n";
+        }
+        .hl-gallery > :nth-child(even) {
+          transform: translate3d(0, 10vw, 0);
+        }
+        .hl-btn-wrapper {
+          grid-area: auto;
+          height: 18.75rem;
+        }
+      }
+      @media (max-width: 699px) {
+        .hl-gallery {
+          gap: 0.3125rem;
+        }
+      }
+
+      /* highlight card */
+      .hl-card {
+        position: relative;
+        border-top-right-radius: 3rem;
+        overflow: hidden;
+        height: 25rem;
+      }
+      .hl-card > figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .hl-card > figure > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hl-card > figure::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(31, 31, 31, 0) 0%,
+          rgba(31, 31, 31, 0.6) 100%
+        );
+        z-index: 20;
+        transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 1;
+      }
+      .hl-card > figure::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 147, 173, 0) 0%,
+          rgba(255, 147, 173, 0.6) 100%
+        );
+        z-index: 21;
+        transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 0;
+      }
+      .hl-card:hover > figure::after {
+        opacity: 1;
+      }
+      .hl-card > main {
+        position: absolute;
+        bottom: 0;
+        padding: 1.25rem 0.9375rem;
+        z-index: 22;
+        color: white;
+        font-family: "Roboto", sans-serif;
+      }
+      .card-title {
+        font-size: 2.2rem;
+        font-weight: 450;
+        letter-spacing: -0.08rem;
+      }
+      .card-subtitle {
+        font-size: 0.75rem;
+      }
+      @media (max-width: 700px) {
+        .hl-card {
+          height: 18.75rem;
+        }
+        .card-title {
+          font-size: 20px;
+        }
+      }
+      @media (min-width: 1000px) {
+        .hl-card {
+          height: 40vw;
+        }
+        .card-title {
+          font-size: 2.2rem;
+        }
+      }
+
+      /* ============ COORDINATORS ============ */
+      .coordinators-section {
+        padding-top: 14rem;
+        padding-bottom: 8rem;
+        --heading-font-size: 16vw;
+        overflow-x: hidden;
+      }
+      @media (max-width: 999px) {
+        .coordinators-section {
+          --heading-font-size: 20vw;
+        }
+      }
+      @media (max-width: 760px) {
+        .coordinators-section {
+          --heading-font-size: 24vw;
+        }
+      }
+      .coordinator-names {
+        will-change: transform;
+        color: #565656;
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto";
+        font-size: 3.2rem;
+        font-weight: 600;
+        letter-spacing: -0.05rem;
+        line-height: 0.9;
+        position: absolute;
+        bottom: calc(0.4 * var(--heading-font-size));
+        left: calc(1.4 * var(--heading-font-size));
+      }
+      .coordinator-names ul {
+        margin-bottom: 0.8rem;
+        list-style-type: none;
+      }
+      .coordinator-names ul li {
+        display: inline;
+      }
+      .coordinator-names ul:last-child {
+        margin-left: var(--heading-font-size);
+      }
+      @media (max-width: 1900px) {
+        .coordinator-names {
+          font-size: 3rem;
+        }
+      }
+      @media (max-width: 1600px) {
+        .coordinator-names {
+          font-size: 2.5rem;
+        }
+      }
+      @media (max-width: 1366px) {
+        .coordinator-names {
+          font-size: 2.25rem;
+        }
+      }
+      @media (max-width: 1150px) {
+        .coordinator-names {
+          font-size: 2rem;
+        }
+      }
+      @media (max-width: 999px) {
+        .coordinator-names {
+          font-size: 1.8rem;
+        }
+      }
+      @media (max-width: 800px) {
+        .coordinator-names {
+          font-size: 1.4rem;
+          bottom: 1.2rem;
+        }
+      }
+      @media (max-width: 650px) {
+        .coordinator-names {
+          font-size: 1.2rem;
+        }
+      }
+      @media (max-width: 500px) {
+        .coordinator-names {
+          font-size: 0.95rem;
+          bottom: 0;
+        }
+      }
+
+      /* ============ CAROUSEL ============ */
+      .carousel {
+        position: relative;
+        cursor: none;
+        --card-width: 30%;
+      }
+      @media (max-width: 800px) {
+        .carousel {
+          --card-width: 60%;
+        }
+      }
+      @media (max-width: 699px) {
+        .carousel {
+          --card-width: 80%;
+        }
+      }
+      .c-cards-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        transform: translate3d(calc(var(--card-width) / 2), 0, 0);
+      }
+      .c-cards-wrapper.-sliding {
+        transition: transform 0.3s;
+      }
+      .c-cards-wrapper.-transit-left {
+        transform: translate3d(calc(3 * var(--card-width) / 2), 0, 0);
+      }
+      .c-cards-wrapper.-transit-right {
+        transform: translate3d(calc(-1 * var(--card-width) / 2), 0, 0);
+      }
+      .card-wrapper {
+        padding-left: 0.3125rem;
+        padding-right: 0.3125rem;
+        width: var(--card-width);
+        height: auto;
+        flex-shrink: 0;
+        position: relative;
+        transition-property: transform;
+      }
+      .c-card {
+        display: block;
+        position: relative;
+      }
+      .c-card-visual {
+        display: block;
+        border-top-right-radius: 3rem;
+        overflow: hidden;
+        background-color: #1c1c1c;
+        z-index: 0;
+        transform: translate3d(0, 0, 0);
+        position: relative;
+      }
+      .c-card-visual::before {
+        content: "";
+        display: block;
+        position: relative;
+        padding-bottom: 56.25%;
+      }
+      .c-card-visual img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+        z-index: 10;
+        transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .c-card-visual::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 147, 173, 0) 0%,
+          rgba(255, 147, 173, 0.6) 100%
+        );
+        z-index: 20;
+        transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 0;
+      }
+      .c-card:hover .c-card-visual::after {
+        opacity: 1;
+      }
+      .c-card-content {
+        margin-top: 1.25rem;
+      }
+      .c-card-heading {
+        font-size: 1.3125rem;
+        font-weight: 700;
+        line-height: 1.04;
+        margin-bottom: 0.625rem;
+        color: var(--primary);
+      }
+      @media (min-width: 1000px) {
+        .c-card-heading {
+          font-size: 1.5rem;
+        }
+      }
+      .c-card-footer {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        flex-wrap: wrap;
+      }
+      .c-card-footer li {
+        white-space: nowrap;
+      }
+      .c-role,
+      .c-sep {
+        display: inline-block;
+        margin-right: 0.625rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .c-sep::after {
+        content: "/";
+      }
+
+      /* carousel cursor */
+      .c-gallery-cursor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5rem;
+        height: 5rem;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+        color: #fefdfb;
+        transition: opacity 0.15s;
+      }
+      .c-gallery-cursor::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #1f1f1f;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .c-gallery-cursor svg {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 33.33333%;
+        height: 33.33333%;
+        fill: currentColor;
+      }
+      .c-gallery-cursor.-visible {
+        opacity: 1;
+      }
+      .c-gallery-cursor.-rotate > svg {
+        transform: translate(-50%, -50%) scaleX(-1);
+      }
+      @media (hover: none) {
+        .c-gallery-cursor {
+          display: none;
+        }
+      }
+
+      /* mobile arrows */
+      .mobile-arrows {
+        display: none;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        background-color: transparent;
+        mix-blend-mode: difference;
+        justify-content: space-between;
+        padding: 0 1.2rem;
+      }
+      .carousel-dir {
+        width: 2rem;
+        height: 4rem;
+        color: white;
+      }
+      .carousel-dir svg {
+        fill: currentColor;
+        width: 100%;
+        height: 100%;
+      }
+      .carousel-dir:first-child {
+        transform: scaleX(-1);
+      }
+      @media (hover: none) {
+        .mobile-arrows {
+          display: flex;
+        }
+      }
+
+      /* ============ FOOTER ============ */
+      footer {
+        --text-FooterColor: rgb(51, 49, 49);
+        background-color: #cbcaca;
+        color: var(--text-FooterColor);
+        padding-top: 3rem;
+        padding-bottom: 1rem;
+        font-family: "Roboto", sans-serif;
+        letter-spacing: -0.15ch;
+        position: relative;
+      }
+      .main-footer-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+        justify-content: space-around;
+      }
+      .footer-items {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 1rem;
+        justify-content: space-around;
+      }
+      .footer-items > * {
+        flex: 1;
+      }
+      .footer-items > :last-child > img {
+        display: block;
+        margin-left: auto;
+      }
+      .footer-items p {
+        font-size: 30px;
+        padding-bottom: 20px;
+      }
+      .thanks-text {
+        font-family: "Antonio", sans-serif;
+        font-size: 45px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .quotes-container {
+        font-family: "Antonio", sans-serif;
+        width: 300px;
+        white-space: normal;
+      }
+      .quotes {
+        font-size: 1.8rem;
+      }
+      .logo-container {
+        margin: 0.625rem 1rem 1rem;
+        position: relative;
+      }
+      .logo-container img {
+        width: 250px;
+        height: auto;
+        filter: invert(100%);
+        max-width: 100%;
+        display: block;
+        margin: auto;
+      }
+      .footer-logo-title {
+        position: absolute;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 0.22ch;
+        font-family: "Roboto", sans-serif;
+        text-align: center;
+        left: 50%;
+        bottom: 1.8rem;
+        transform: translate(-50%, 0);
+      }
+      .sponsor-wrapper .sponsor {
+        width: fit-content;
+        margin-left: auto;
+      }
+      .sponsor-imgs {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+      }
+      .sponsor-imgs img {
+        height: 2rem;
+        margin: 0.4rem;
+        width: auto;
+      }
+      .social-handles {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+      }
+      .handle-wrapper {
+        margin-right: 1rem;
+      }
+      .handle {
+        border: 1px solid black;
+        border-radius: 50%;
+        display: block;
+        position: relative;
+        width: 3.2rem;
+        height: 3.2rem;
+        text-decoration: none;
+      }
+      .handle svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+        height: 40%;
+        fill: var(--text-FooterColor);
+        transition: 0.2s ease;
+      }
+      .handle:hover svg {
+        width: 50%;
+        height: 50%;
+      }
+      .footer-copyright {
+        font-family: "Roboto", sans-serif;
+        color: rgb(51, 49, 49);
+        font-size: 0.95rem;
+        padding: 0.8rem 0;
+        text-align: center;
+        letter-spacing: 0;
+      }
+      .footer-team {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: relative;
+        width: fit-content;
+        margin: auto;
+        gap: 0.25rem;
+      }
+      .devteam-btn {
+        background-color: transparent;
+        border: none;
+        margin: 0 0.25rem;
+        color: var(--primary);
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        font-family: "Open Sans";
+        cursor: pointer;
+        font-size: inherit;
+      }
+      .devteam-btn::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        transform: scaleX(0);
+        background: var(--primary);
+        transition: 0.4s;
+        transform-origin: left;
+      }
+      .devteam-btn:hover::before {
+        transform: scaleX(1);
+      }
+      .devteam {
+        padding: 0.4rem;
+        border-radius: 0.25rem;
+        background-color: var(--white2);
+        display: none;
+        list-style-type: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(0, calc(-0.5rem - 100%));
+      }
+      .devteam.visible {
+        display: block;
+      }
+      .devteam a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .devteam a::after {
+        background: white;
+      }
+      .footer-sep {
+        display: inline-block;
+        margin: 0 0.25rem;
+      }
+
+      @media (max-width: 630px) {
+        .footer-items {
+          justify-content: center;
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+      @media (max-width: 550px) {
+        .footer-sep {
+          display: none;
+        }
+        .footer-team {
+          flex-direction: column;
+        }
+      }
+
+      /* ============ PAGE SECTIONS ============ */
+      .page {
+        position: relative;
+        background-color: var(--white1);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Inline SVG icons */
+      .icon-down {
+        display: block;
+      }
+      .icon-right {
+        display: block;
+      }
+      .icon-link {
+        display: block;
+      }
+      .icon-schedule {
+        display: block;
+      }
+      .icon-narrow-arrow {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GRAIN OVERLAY -->
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <header>
+      <nav id="nav">
+        <div class="nav-logo"><a href="#hero">Techfest</a></div>
+        <div class="nav-links desktop">
+          <a href="/Accomodations/accodomations.html" class="nav-link">Accommodations</a>
+          <a href="#gallery-section" class="nav-link">Gallery</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6Mfr0dE4HRpR9bftZiuCFej0WHok2WDxfTmnSDwEqyWL7Jg/viewform?usp=publish-editor" class="nav-link">Register</a>
+        </div>
+        <button
+          class="mobile-hamburger-btn"
+          aria-label="Menu"
+          id="hamburger-btn"
+        >
+          Close
+        </button>
+      </nav>
+      <!-- Mobile nav -->
+      <nav id="mobile-nav">
+        <button class="mobile-close-btn" id="mobile-close-btn">Close</button>
+        <ul class="mobile-nav-links">
+          <li>
+            <a href="#hero" class="mobile-nav-link" onclick="closeMobileNav()"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="Accomodations/accodomations.html"
+              class="mobile-nav-link"
+              onclick="closeMobileNav()"
+              >Accomodations</a
+            >
+          </li>
+          <li>
+            <a
+              href="#gallery-section"
+              class="mobile-nav-link"
+              onclick="closeMobileNav()"
+              >Gallery</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf6Mfr0dE4HRpR9bftZiuCFej0WHok2WDxfTmnSDwEqyWL7Jg/viewform?usp=publish-editor"
+              class="mobile-nav-link"
+              onclick="closeMobileNav()"
+              >Register</a
+            >
+          </li>
+        </ul>
+        <div class="nav-footer-copy">&copy;2026 Techfest IIT Bombay</div>
+      </nav>
+    </header>
+
+    <div class="page">
+      <!-- HERO -->
+      <div id="hero">
+          <video autoplay muted loop playsinline class="hero-video">
+    <source src="https://atulyam23.netlify.app/static/media/medium.89733ac0b9f1a1ff342f.mp4" type="video/mp4" />
+  </video>
+        <!-- Hero bg gradient -->
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              to bottom,
+              rgba(220, 210, 205, 0.9) 0%,
+              rgba(200, 185, 175, 0.85) 60%,
+              rgba(150, 130, 120, 0.7) 100%
+            );
+            z-index: 1;
+          "
+        ></div>
+        <div class="hero-content">
+          <h1 class="hero-logo" id="hero-logo">
+            <span class="should-animate">T</span
+            ><span class="should-animate">e</span
+            ><span class="should-animate">c</span
+            ><span class="should-animate">h</span
+            ><span class="should-animate">f</span
+            ><span class="should-animate">e</span
+            ><span class="should-animate">s</span>
+            <span class="should-animate">t</span>
+          </h1>
+          <div class="hero-timeline">
+            <p>The countdown begins!</p>
+            <div class="countdown-timer" id="countdown">
+              <div class="countdown-unit">
+                <span class="countdown-num" id="cd-days">00</span
+                ><span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-num" id="cd-hours">00</span
+                ><span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-num" id="cd-mins">00</span
+                ><span class="countdown-label">Mins</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-num" id="cd-secs">00</span
+                ><span class="countdown-label">Secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-down" aria-hidden="true">
+          <svg viewBox="0 0 16 34" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7 0v28.17L1.41 22.59 0 24l8 8 8-8-1.41-1.41L9 28.17V0H7z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- INTRO SECTION -->
+      <section class="intro-section home-section" id="intro-section">
+        <div class="intro-bg" aria-hidden="true">
+          <div class="rail" id="rail1">
+            <span>cosplay </span><span>fun </span><span>poetry </span
+            ><span>face painting </span><span>solo song </span
+            ><span>dance </span><span>essay </span><span>sketching </span
+            ><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span><span>cosplay </span
+            ><span>fun </span><span>poetry </span><span>face painting </span
+            ><span>solo song </span><span>dance </span><span>essay </span
+            ><span>sketching </span><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span>
+          </div>
+          <div class="rail" id="rail2">
+            <span>cosplay </span><span>fun </span><span>poetry </span
+            ><span>face painting </span><span>solo song </span
+            ><span>dance </span><span>essay </span><span>sketching </span
+            ><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span><span>cosplay </span
+            ><span>fun </span><span>poetry </span><span>face painting </span
+            ><span>solo song </span><span>dance </span><span>essay </span
+            ><span>sketching </span><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span>
+          </div>
+          <div class="rail" id="rail3">
+            <span>cosplay </span><span>fun </span><span>poetry </span
+            ><span>face painting </span><span>solo song </span
+            ><span>dance </span><span>essay </span><span>sketching </span
+            ><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span><span>cosplay </span
+            ><span>fun </span><span>poetry </span><span>face painting </span
+            ><span>solo song </span><span>dance </span><span>essay </span
+            ><span>sketching </span><span>concert </span><span>flash mob </span
+            ><span>film making </span><span>joy </span><span>concert </span
+            ><span>dj </span><span>poetry slam </span>
+          </div>
+        </div>
+        <header class="intro-content section-header container">
+          <h2 class="section-heading">
+            <span style="margin-right: 3ch">Techfest</span>
+            <span class="_ar">2026</span>
+          </h2>
+          <p class="intro-subtitle">
+            Techfest is the annual science and technology festival of Indian
+            Institute of Technology Bombay, commonly known as IIT Bombay. The
+            festival includes robotics competitions, hackathons, AI and coding
+            workshops, tech exhibitions, guest lectures by scientists and
+            entrepreneurs, gaming events, and live techno entertainment.
+          </p>
+          <div class="header-btn-wrapper">
+            <a href="#gallery-section" class="btn intro-header-btn">
+              <span class="btn-subtitle intro-btn-subtitle"
+                >Techfest'26 in reels</span
+              >
+              <span class="btn-text intro-btn-text">Gallery</span>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"
+                />
+              </svg>
+            </a>
+          </div>
+        </header>
+      </section>
+
+      <!-- HIGHLIGHTS SECTION -->
+      <section
+        class="highlights-section home-section container"
+        id="events-section"
+      >
+        <header class="section-header">
+          <h2 class="section-heading"><span>Highlights</span></h2>
+        </header>
+        <main>
+          <div class="hl-gallery">
+            <!-- highlight cards -->
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://i.pinimg.com/736x/09/be/13/09be132a0fed96344bb7807bcdd286d1.jpg"
+                  alt="Modern Dance"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">Robotics</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Contest</div>
+                </div>
+              </main>
+            </article>
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://i.pinimg.com/736x/fb/c7/6c/fbc76cc9cafb80e74b2560a2aff282a0.jpg"
+                  alt="Short Film"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">Hackathons</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Contest</div>
+                </div>
+              </main>
+            </article>
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://i.pinimg.com/1200x/bb/df/8b/bbdf8bbb253ad7e925eb1733c5ea164d.jpg"
+                  alt="Solo Song"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">AI Workshops</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Contest</div>
+                </div>
+              </main>
+            </article>
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://i.pinimg.com/1200x/47/a9/d1/47a9d1f002a0e95369ca049df45fdd21.jpg"
+                  alt="Mr. Ms. Techfest"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">Live Exhibitions</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Contest</div>
+                </div>
+              </main>
+            </article>
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://i.pinimg.com/1200x/78/2d/30/782d3056c057cdf625390350df9f47f0.jpg"
+                  alt="Cosplay"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">Gaming Events</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Contest</div>
+                </div>
+              </main>
+            </article>
+            <article class="hl-card">
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80"
+                  alt="DJ Night"
+                  loading="lazy"
+                />
+              </figure>
+              <main>
+                <h3 class="card-title">DJ Night</h3>
+                <div class="card-subtitle">
+                  <div class="card-type">Event</div>
+                </div>
+              </main>
+            </article>
+            <!-- btn -->
+            <div class="hl-btn-wrapper" id="gallery-section">
+              <a href="#schedule" class="btn">
+                <span class="btn-subtitle">Events</span>
+                <span class="btn-text">Full Event<br />Schedule</span>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </main>
+      </section>
+
+      <!-- COORDINATORS SECTION -->
+      <section
+        class="coordinators-section home-section"
+        id="coordinators-section"
+      >
+        <header
+          class="section-header container"
+          style="position: relative; overflow: visible"
+        >
+          <h2 class="section-heading">
+            <span style="margin-right: 3ch">Our</span>
+            <span class="_ar">Team</span>
+          </h2>
+          <div class="coordinator-names" id="coordinatorsList">
+            <ul id="coord-list-1"></ul>
+            <ul id="coord-list-2"></ul>
+          </div>
+        </header>
+        <main>
+          <!-- Carousel -->
+          <div class="carousel" id="carousel">
+            <div class="c-cards-wrapper" id="c-cards-wrapper"></div>
+            <div class="mobile-arrows container">
+              <div class="carousel-dir">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                </svg>
+              </div>
+              <div class="carousel-dir">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                </svg>
+              </div>
+            </div>
+            <div class="c-gallery-cursor" id="c-gallery-cursor">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+              </svg>
+            </div>
+          </div>
+        </main>
+      </section>
+
+      <!-- SCHEDULE SECTION -->
+      <section
+        style="padding: 6rem 0 8rem; background: var(--white1)"
+        id="schedule"
+      >
+        <div class="container">
+          <header class="section-header">
+            <h2 class="section-heading" style="--heading-font-size: 12vw">
+              <span>Schedule</span>
+            </h2>
+          </header>
+          <div
+            id="schedule-content"
+            style="max-width: 800px; margin: auto"
+          ></div>
+        </div>
+      </section>
+    </div>
+    <!-- .page -->
+
+    <!-- FOOTER -->
+    <footer class="container">
+      <div class="main-footer-content">
+        <div class="footer-items" id="footerContent">
+          <div class="quotes-container">
+            <div class="quotes">
+              Our cultural fest is a mosaic of traditions, where stories unfold,
+              and memories are made
+            </div>
+          </div>
+          <div>
+            <div class="logo-container">
+              <div
+                style="
+                  font-family: &quot;Antonio&quot;, sans-serif;
+                  font-size: 3rem;
+                  font-weight: 600;
+                  color: #fff;
+                  text-align: center;
+                  letter-spacing: -0.1ch;
+                  background: #333;
+                  padding: 1rem 2rem;
+                  border-radius: 0.5rem;
+                "
+              >
+                Techfest
+              </div>
+              <div
+                class="footer-logo-title"
+                style="position: static; margin-top: 0.5rem; text-align: center"
+              >
+               
+              </div>
+            </div>
+          </div>
+          <div class="sponsor-wrapper">
+            <div class="sponsor">
+              <p
+                style="
+                  text-align: center;
+                  font-size: 1.2rem !important;
+                  padding-bottom: 10px !important;
+                "
+              >
+                Our Sponsors
+              </p>
+              <div class="sponsor-imgs">
+                <span
+                  style="
+                    font-family: &quot;Antonio&quot;;
+                    font-size: 1.5rem;
+                    letter-spacing: -0.05ch;
+                    display: block;
+                    margin: 0.3rem 0;
+                  "
+                  >Canva</span
+                >
+                <span
+                  style="
+                    font-family: &quot;Antonio&quot;;
+                    font-size: 1.5rem;
+                    letter-spacing: -0.05ch;
+                    display: block;
+                    margin: 0.3rem 0;
+                  "
+                  >The Souled Store</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-items">
+          <div>
+            <p>Contact us</p>
+            <ul class="social-handles">
+              <li class="handle-wrapper">
+                <a
+                  class="handle"
+                  target="_blank"
+                  rel="noreferrer"
+                  href=""
+                  aria-label="Facebook"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                    />
+                  </svg>
+                </a>
+              </li>
+           
+              <li class="handle-wrapper">
+                <a
+                  class="handle"
+                  target="_blank"
+                  rel="noreferrer"
+                  href=""
+                  aria-label="WhatsApp"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="thanks-text">Thank you<br />for your support</div>
+          <div>
+            <div
+              style="
+                height: 160px;
+                width: auto;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;Antonio&quot;, sans-serif;
+                  font-size: 4rem;
+                  font-weight: 200;
+                  color: #888;
+                  letter-spacing: -0.2ch;
+                  text-transform: uppercase;
+                "
+              >
+                Bye!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="footer-team">
+          <span
+            >Handcrafted with 🖤 by
+            <button class="devteam-btn" id="devteam-btn">Team4One</button>
+          </span>
+          <span class="footer-sep">~</span>
+          <span>&copy; 2026 Techfest IIT Bombay</span>
+          <ul class="devteam" id="devteam-list">
+            <li>
+              <a
+                class="link"
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/tripathics"
+                >@tripathics</a
+              >
+            </li>
+            <li>
+              <a
+                class="link"
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/pursottam6003"
+                >@pursottam6003</a
+              >
+            </li>
+            <li>
+              <a
+                class="link"
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/daknya"
+                >@daknya</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ===== DATA =====
+      const coordinators = [
+        { name: "Aarav Sharma" },
+{ name: "Priya Verma" },
+{ name: "Rohan Mehta" },
+{ name: "Ananya Singh" },
+{ name: "Vivaan Kapoor" },
+{ name: "Sneha Patel" },
+{ name: "Aditya Joshi" },
+{ name: "Kavya Nair" },
+{ name: "Arjun Malhotra" },
+{ name: "Ishita Roy" },
+{ name: "Krishna Yadav" },
+{ name: "Neha Gupta" },
+{ name: "Rahul Choudhary" },
+{ name: "Pooja Mishra" },
+{ name: "Aryan Desai" },
+{ name: "Simran Kaur" },
+{ name: "Harsh Vardhan" },
+{ name: "Meera Iyer" },
+{ name: "Kunal Saxena" },
+{ name: "Ritika Sharma" },
+{ name: "Siddharth Jain" },
+{ name: "Aditi Rao" },
+{ name: "Manav Bansal" },
+{ name: "Tanvi Kulkarni" },
+{ name: "Yash Agarwal" },
+{ name: "Nandini Reddy" },
+{ name: "Dev Malviya" },
+{ name: "Palak Arora" },
+{ name: "Akash Tripathi" },
+{ name: "Rhea Thomas" },
+{ name: "Tushar Pandey" },
+{ name: "Sanya Oberoi" },
+{ name: "Mohit Sinha" },
+{ name: "Diya Kapoor" },
+{ name: "Lakshya Arora" },
+{ name: "Anushka Sen" },
+
+      ];
+
+      const mainCoordinators = [
+        {
+          name: "Shreya Sahu",
+          img: "https://i.pinimg.com/736x/88/cd/40/88cd4007a1eea35ca8534b5d9c397e66.jpg",
+          roles: ["Designer", "UI/UX", "Frontend", "Coordinator"],
+        },
+        {
+          name: "Mehak Jha",
+          img: "https://i.pinimg.com/1200x/cf/60/e6/cf60e63706217cc3b5b0771daa782429.jpg",
+          roles: ["Designing coordinator"],
+        },
+        {
+          name: "Anam Beig",
+          img: "https://i.pinimg.com/736x/6a/13/a8/6a13a878ff7b7bfb936e7435f3229e65.jpg",
+          roles: ["Decoration Coordinator", "Designing Team"],
+        },
+        {
+          name: "Aarav Sharma",
+          img: "https://i.pinimg.com/736x/ce/1f/06/ce1f06855c91a4b115da04aec8d13a0e.jpg",
+          roles: ["Coordinator", "Mr. and Ms. Techfest"],
+        },
+        {
+          name: "Harsh Upadhyay",
+          img: "https://i.pinimg.com/1200x/07/6f/25/076f254d6a457c1f7458d90427cb2b53.jpg",
+          roles: ["Chief coordinator"],
+        },
+        {
+          name: "Kriti Agarwal",
+          img: "https://i.pinimg.com/1200x/79/21/89/792189360a4bfa241c38f655e884780e.jpg",
+          roles: ["Sponsor Head"],
+        },
+        {
+          name: "Avni Rai",
+          img: "https://i.pinimg.com/736x/3c/9c/04/3c9c0494bd0a07a34f58edb543f4d746.jpg",
+          roles: ["Main Events Coordinator"],
+        },
+        {
+          name: "Sarthak Tripathi",
+          img: "https://i.pinimg.com/736x/03/a2/18/03a2188c87c3defa22b28e077c79c187.jpg",
+          roles: ["Advisory, Techfest'26", "President"],
+        },
+        {
+          name: "Lishi Akhil",
+          img: "https://i.pinimg.com/736x/3f/5d/7f/3f5d7f6a8063f2531feb173ce45c1b38.jpg",
+          roles: ["Advisory, Techfest'23", "General Secretary"],
+        },
+        
+      ];
+
+      const events = [
+        {
+          day: 0,
+          time: "10:00",
+          title: "Inauguration",
+          venue: "Main Stage",
+          type: "Event",
+        },
+        {
+          day: 0,
+          time: "11:15",
+          title: "Guest Speech",
+          venue: "Main Stage",
+          type: "Contest",
+        },
+        {
+          day: 0,
+          time: "11:15",
+          title: "Workshops & Events",
+          venue: "Mechanical Block 2F",
+          type: "Contest",
+        },
+        {
+          day: 0,
+          time: "14:30",
+          title: "Quiz",
+          venue: "TEL Center",
+          type: "Contest",
+        },
+        {
+          day: 0,
+          time: "14:30",
+          title: "Robotics Competition",
+          venue: "Mechanical Block 2F",
+          type: "Contest",
+        },
+        {
+          day: 0,
+          time: "18:00",
+          title: "Performance by IIT Bombay students",
+          venue: "Main Stage",
+          type: "Event",
+        },
+        {
+          day: 0,
+          time: "19:00",
+          title: "Prahaar - The Band",
+          venue: "Main Stage",
+          type: "Concert",
+        },
+        {
+          day: 1,
+          time: "10:00",
+          title: "Poetry Slam",
+          venue: "TEL Center",
+          type: "Contest",
+        },
+        {
+          day: 1,
+          time: "10:00",
+          title: "Hackathon",
+          venue: "Main Stage",
+          type: "Contest",
+        },
+        {
+          day: 1,
+          time: "11:30",
+          title: "Workshops & Events",
+          venue: "Mechanical Block 2F",
+          type: "Contest",
+        },
+        {
+          day: 1,
+          time: "14:30",
+          title: "War of Machines",
+          venue: "Mechanical Block 2F",
+          type: "Contest",
+        },
+        {
+          day: 1,
+          time: "14:30",
+          title: "Tech Competitions",
+          venue: "2nd Stage",
+          type: "Contest",
+        },
+        {
+          day: 1,
+          time: "16:30",
+          title: "Mr. and Ms. Techfest (Talent Round)",
+          venue: "2nd Stage",
+          type: "Pre-round",
+        },
+        {
+          day: 1,
+          time: "19:00",
+          title: "David Angu & The Tribe",
+          venue: "Main Stage",
+          type: "Concert",
+        },
+        {
+          day: 2,
+          time: "14:00",
+          title: "War of Bands",
+          venue: "Main Stage",
+          type: "Contest",
+        },
+        {
+          day: 2,
+          time: "17:00",
+          title: "Mr. and Ms. Techfest",
+          venue: "Main Stage",
+          type: "Contest",
+        },
+        {
+          day: 2,
+          time: "After Mr. & Ms.",
+          title: "Opening Act",
+          venue: "Main Stage",
+          type: "Event",
+        },
+        {
+          day: 2,
+          time: "Night",
+          title: "DJ Night",
+          venue: "Main Stage",
+          type: "Event",
+        },
+      ];
+
+      // ===== BUILD COORDINATOR LISTS =====
+      const c1 = document.getElementById("coord-list-1");
+      const c2 = document.getElementById("coord-list-2");
+      coordinators
+        .filter((_, i) => i <= 22)
+        .forEach((c) => {
+          const li = document.createElement("li");
+          li.textContent = " " + c.name;
+          c1.appendChild(li);
+        });
+      coordinators
+        .filter((_, i) => i > 22)
+        .forEach((c) => {
+          const li = document.createElement("li");
+          li.textContent = " " + c.name;
+          c2.appendChild(li);
+        });
+
+      // ===== BUILD CAROUSEL =====
+      const wrapper = document.getElementById("c-cards-wrapper");
+      mainCoordinators.forEach((card) => {
+        const w = document.createElement("div");
+        w.className = "card-wrapper";
+        w.innerHTML = `<article class="c-card">
+    <figure class="c-card-visual"><img src="${card.img}" alt="${card.name}" loading="lazy"></figure>
+    <main class="c-card-content">
+      <h3 class="c-card-heading">${card.name}</h3>
+      <ul class="c-card-footer">${card.roles.map((r, i) => `<li><span class="c-role">${r}</span>${i < card.roles.length - 1 ? '<span class="c-sep"></span>' : ""}</li>`).join("")}</ul>
+    </main>
+  </article>`;
+        wrapper.appendChild(w);
+      });
+
+      // ===== BUILD SCHEDULE =====
+      const scheduleEl = document.getElementById("schedule-content");
+      const dayNames = [
+        "Day 1 — June 7, 2026",
+        "Day 2 — June 8, 2026",
+        "Day 3 — June 9, 2026",
+      ];
+      [0, 1, 2].forEach((day) => {
+        const dayEvents = events.filter((e) => e.day === day);
+        const section = document.createElement("div");
+        section.style.cssText = "margin-bottom:3rem";
+        section.innerHTML = `<h3 style="font-family:'Antonio',sans-serif;font-size:2rem;font-weight:400;margin-bottom:1.5rem;color:#333;border-bottom:2px solid var(--primary);padding-bottom:.5rem">${dayNames[day]}</h3>
+  <div style="display:flex;flex-direction:column;gap:.75rem">
+    ${dayEvents
+      .map(
+        (
+          e,
+        ) => `<div style="display:flex;gap:1rem;padding:1rem;background:#fff;border-radius:.5rem;border-left:4px solid var(--primary);align-items:flex-start">
+      <div style="min-width:5rem;font-family:'Antonio',sans-serif;font-size:1.1rem;color:var(--primary);font-weight:600">${e.time}</div>
+      <div>
+        <div style="font-weight:700;font-family:'Roboto',sans-serif;margin-bottom:.25rem">${e.title}</div>
+        <div style="font-size:.85rem;color:#666">${e.venue} · <span style="color:var(--primary)">${e.type}</span></div>
+      </div>
+    </div>`,
+      )
+      .join("")}
+  </div>`;
+        scheduleEl.appendChild(section);
+      });
+
+      // ===== COUNTDOWN =====
+      const targetDate = new Date("June 7, 2026 10:00:00").getTime();
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        const el = document.getElementById("countdown");
+        if (diff <= 0) {
+          if (el)
+            el.innerHTML = '<span style="font-size:2rem">🎉 Live Now!</span>';
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById("cd-days").textContent = String(days).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-hours").textContent = String(
+          hours,
+        ).padStart(2, "0");
+        document.getElementById("cd-mins").textContent = String(mins).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-secs").textContent = String(secs).padStart(
+          2,
+          "0",
+        );
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // ===== MOBILE NAV =====
+      const hamburger = document.getElementById("hamburger-btn");
+      const mobileNav = document.getElementById("mobile-nav");
+      const mobileClose = document.getElementById("mobile-close-btn");
+      function openMobileNav() {
+        hamburger.classList.add("active");
+        mobileNav.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMobileNav() {
+        hamburger.classList.remove("active");
+        mobileNav.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+      hamburger.addEventListener("click", () => {
+        if (mobileNav.classList.contains("active")) closeMobileNav();
+        else openMobileNav();
+      });
+      mobileClose.addEventListener("click", closeMobileNav);
+
+      // ===== NAV HERO INTERSECTION =====
+      const navEl = document.getElementById("nav");
+      const heroEl = document.getElementById("hero");
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navEl.style.position = "absolute";
+            navEl.style.top = "100vh";
+          } else {
+            navEl.style.position = "fixed";
+            navEl.style.top = "0";
+          }
+        });
+      });
+      heroObserver.observe(heroEl);
+
+      // ===== DEVTEAM TOGGLE =====
+      const devBtn = document.getElementById("devteam-btn");
+      const devList = document.getElementById("devteam-list");
+      devBtn.addEventListener("click", () =>
+        devList.classList.toggle("visible"),
+      );
+
+      // ===== CAROUSEL LOGIC =====
+      const carousel = document.getElementById("carousel");
+      const cardsWrapper = document.getElementById("c-cards-wrapper");
+      const cursor = document.getElementById("c-gallery-cursor");
+
+      carousel.addEventListener("mouseenter", () =>
+        cursor.classList.add("-visible"),
+      );
+      carousel.addEventListener("mouseleave", () =>
+        cursor.classList.remove("-visible"),
+      );
+      carousel.addEventListener("mousemove", (e) => {
+        const bounds = carousel.getBoundingClientRect();
+        cursor.style.transform = `translate3D(${e.clientX - bounds.left}px, ${e.clientY - bounds.top}px, 0)`;
+        if (e.clientX - bounds.left < bounds.width / 2)
+          cursor.classList.add("-rotate");
+        else cursor.classList.remove("-rotate");
+      });
+
+      function slideCarousel(dir) {
+        if (cardsWrapper.classList.contains("-sliding")) return;
+        cardsWrapper.classList.add("-sliding");
+        cardsWrapper.classList.add(
+          dir === "next" ? "-transit-right" : "-transit-left",
+        );
+        setTimeout(() => {
+          cardsWrapper.classList.remove("-sliding");
+          if (dir === "next")
+            cardsWrapper.appendChild(
+              cardsWrapper.removeChild(cardsWrapper.firstChild),
+            );
+          else
+            cardsWrapper.prepend(
+              cardsWrapper.removeChild(cardsWrapper.lastChild),
+            );
+          cardsWrapper.classList.remove("-transit-right", "-transit-left");
+        }, 300);
+      }
+
+      cardsWrapper.addEventListener("click", (e) => {
+        const bounds = carousel.getBoundingClientRect();
+        slideCarousel(
+          e.clientX - bounds.left < bounds.width / 2 ? "prev" : "next",
+        );
+      });
+
+      // Mobile arrow buttons
+      const arrows = document.querySelectorAll(".carousel-dir");
+      if (arrows[0])
+        arrows[0].addEventListener("click", () => slideCarousel("prev"));
+      if (arrows[1])
+        arrows[1].addEventListener("click", () => slideCarousel("next"));
+
+      // ===== GSAP ANIMATIONS =====
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero logo letters entrance
+      gsap.from(".should-animate", {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.06,
+        ease: "power3.out",
+        delay: 0.3,
+      });
+
+      // Parallax on hero logo letters
+      const heroLetters = document.querySelectorAll(".should-animate");
+      const coordNamesList = document.getElementById("coordinatorsList");
+
+      function parallaxAnimate() {
+        const offsetTop = heroLetters[0]?.offsetTop || 0;
+        const speed = 0.04;
+        heroLetters.forEach((el, i) => {
+          const shift =
+            Math.abs(3 - i) *
+            speed *
+            (offsetTop - el.getBoundingClientRect().top);
+          el.style.transform = `translate3d(0, ${shift.toFixed(3)}px, 0)`;
+        });
+        if (coordNamesList) {
+          const coordTop = coordNamesList.getBoundingClientRect().top;
+          coordNamesList.style.transform = `translate3d(0, ${(speed * coordTop).toFixed(3)}px, 0)`;
+        }
+      }
+      window.addEventListener("scroll", parallaxAnimate, { passive: true });
+
+      // Section headings scroll entrance
+      gsap.utils.toArray(".section-heading").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 85%" },
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      // Highlight cards stagger entrance
+      gsap.utils.toArray(".hl-card").forEach((el, i) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 90%" },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          delay: i * 0.07,
+          ease: "power2.out",
+        });
+      });
+
+      // Carousel section entrance
+      gsap.from(".carousel", {
+        scrollTrigger: { trigger: ".carousel", start: "top 80%" },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Footer entrance
+      gsap.from(".main-footer-content", {
+        scrollTrigger: { trigger: "footer", start: "top 85%" },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      // Intro content entrance
+      gsap.from(".intro-content", {
+        scrollTrigger: { trigger: ".intro-section", start: "top 60%" },
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      });
+
+      // Schedule rows entrance
+      gsap.utils.toArray("#schedule-content > div").forEach((el, i) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 85%" },
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          delay: i * 0.1,
+          ease: "power2.out",
+        });
+      });
+    </script>
+  </body>
+</html>
