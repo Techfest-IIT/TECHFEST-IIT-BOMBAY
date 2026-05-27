@@ -11,6 +11,126 @@
 
 <style>
 
+    /* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.btn-wrap{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:70px;
+    padding:0 20px;
+}
+
+.accommodation-btn{
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:fit-content;
+    min-width:280px;
+    max-width:100%;
+
+    padding:20px 40px;
+
+    text-align:center;
+
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:2px;
+    text-decoration:none;
+    color:#fff;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+    135deg,
+    #00d9ff,
+    #8f2dff
+    );
+
+    overflow:hidden;
+
+    transition:0.4s ease;
+
+    box-shadow:
+    0 0 25px rgba(0,217,255,0.35),
+    0 0 45px rgba(143,45,255,0.25);
+
+    animation:pulseBtn 2s infinite;
+}
+
+/* SHINE EFFECT */
+
+.accommodation-btn::before{
+    content:"";
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+    );
+
+    transform:skewX(-20deg);
+
+    transition:.8s;
+}
+
+.accommodation-btn:hover::before{
+    left:120%;
+}
+
+/* HOVER */
+
+.accommodation-btn:hover{
+    transform:translateY(-6px) scale(1.04);
+
+    box-shadow:
+    0 0 35px rgba(0,217,255,0.55),
+    0 0 70px rgba(143,45,255,0.45);
+}
+
+/* ANIMATION */
+
+@keyframes pulseBtn{
+
+    50%{
+        transform:scale(1.03);
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:768px){
+
+    .accommodation-btn{
+
+        width:100%;
+        max-width:330px;
+
+        padding:18px 20px;
+
+        font-size:.9rem;
+        letter-spacing:1.5px;
+    }
+
+}
+
 *{
     margin:0;
     padding:0;
@@ -375,7 +495,7 @@ body::before{
 @media(max-width:900px){
 
     .heading{
-        font-size:1.8rem;
+        font-size:1.5rem;
         letter-spacing:2px;
     }
 
@@ -492,8 +612,17 @@ body::before{
             </div>
 
         </div>
+        </div>
 
-    </div>
+        <!-- BUTTON -->
+
+<div class="btn-wrap">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-MlmvuoXlaoCf-Yht3SDe04UWRpmppQoVQXd3YjIHVIoWMQ/viewform?usp=publish-editor" class="accommodation-btn">
+        GET ACCOMMODATIONS
+    </a>
+</div>
+
+    
 
 </section>
 
